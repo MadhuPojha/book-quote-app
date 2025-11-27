@@ -2,9 +2,8 @@ class Auth {
     constructor() {
         this.token = localStorage.getItem('token');
         this.user = JSON.parse(localStorage.getItem('user') || 'null');
-        this.apiBase = 'http://localhost:8000';
-        console.log('🔍 Auth initialized - Token exists:', !!this.token);
-        console.log('🔍 Full token:', this.token);
+        // Use relative path for API calls (will be proxied by nginx)
+        this.apiBase = '/api';
     }
 
     async register(userData) {

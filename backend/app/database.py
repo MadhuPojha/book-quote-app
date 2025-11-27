@@ -1,10 +1,18 @@
 import sqlite3
 from contextlib import contextmanager
+import os
 
-DATABASE_URL = "books_quotes.db"
+# Use environment variable or default path
+DATABASE_URL = os.getenv("DATABASE_URL", "books_quotes.db")
 
 def init_db():
+    # Ensure database file directory exists
+    db_dir = os.path.dirname(DATABASE_URL)
+    if db_dir and not os.path.exists(db_dir):
+        os.makedirs(db_dir, exist_ok=True)
+    
     with get_db_connection() as conn:
+        # Users table
         # Users table
         conn.execute('''
             CREATE TABLE IF NOT EXISTS users (

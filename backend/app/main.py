@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
-from . import models, auth, database
+from app import models, auth, database
 from .database import get_db_connection
 from .auth import verify_password, get_password_hash, create_access_token, verify_token
 from datetime import timedelta
@@ -13,7 +13,7 @@ app = FastAPI(title="Books & Quotes API")
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:8080", "http://frontend:80", "http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

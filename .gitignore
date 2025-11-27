@@ -46,3 +46,12 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Docker
+.dockerignore
+
+# Kubernetes
+k8s/.kubeconfig
+
+# Build artifacts
+*.tar.gz

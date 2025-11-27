@@ -95,4 +95,26 @@ book-quote-app/
 6. Try the dark/light theme toggle
 7. Test responsive design on different screen sizes
 ```
+## 🐳 Docker & Kubernetes
+```
+# Build and start all services in detached mode
+docker-compose up -d --build
 
+# Build images
+docker build -t books-quotes-backend:latest ./backend
+docker build -t books-quotes-frontend:latest ./frontend
+
+# Deploy to Kubernetes
+kubectl apply -f k8s/
+```
+
+## Features
+```
+✅ Containerized with Docker
+
+✅ Kubernetes-ready manifests
+
+✅ Health checks & auto-scaling
+
+✅ Production deployment ready
+```

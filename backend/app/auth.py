@@ -5,8 +5,8 @@ from fastapi import HTTPException, status
 from .config import settings
 from .models import TokenData
 
-# Use Argon2 instead of bcrypt to avoid 72-byte limitation
-pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
+# Use bcrypt instead of argon2 to avoid dependencies
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """
@@ -16,7 +16,7 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 
 def get_password_hash(password: str) -> str:
     """
-    Hash the password using Argon2.
+    Hash the password using bcrypt.
     """
     return pwd_context.hash(password)
 
@@ -47,5 +47,3 @@ def verify_token(token: str) -> TokenData:
         return TokenData(username=username)
     except JWTError:
         raise credentials_exception
-    
-
